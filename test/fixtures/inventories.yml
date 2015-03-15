@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  currency: CAD $
+  start: 2015-04-13
+  end: 2015-06-15
+
+two:
+  currency: USD $
+  start: 2015-02-14
+  end: 2015-05-14
+
+three:
+  currency: CAD $
+  start: 2015-05-13
+  end: 2015-08-15
+
+four:
+  currency: USD $
+  start: 2015-02-14
+  end: 2015-05-14
+
+five:
+  currency: CAD $
+  start: 2015-04-13
+  end: 2015-06-15
+
+six:
+  currency: USD $
+  start: 2015-02-14
+  end: 2015-05-14

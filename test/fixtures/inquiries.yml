@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  aptid: 1
+  checkin: 2015-03-13
+  checkout: 2015-03-13
+  availability: false
+
+two:
+  aptid: 1
+  checkin: 2015-03-13
+  checkout: 2015-03-13
+  availability: false

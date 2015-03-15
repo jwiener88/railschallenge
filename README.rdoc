@@ -1,0 +1,67 @@
+== README
+
+This project was completed using Rails 4.0.0 and Ruby 1.9.3
+
+There is a single web page that shows a form to check the availability, and a table displaying all previous inquiries
+
+The style is the minimum required to be functional, aesthetics were not considered in the creation.
+
+There are three tables internally:
+	inquiries
+	inventories
+	bookings
+
+Bookings and Inventories are not accessible by the user and their Routes tables are empty. They were poplated with the rails console. 
+
+Inventories has the following format:
+	id: Integer
+	currency: String
+	start: Date     ##The start of the apartment's sublet term
+	end: Date		##The end of the apartment's sublet term
+
+An assumption is that any time required to prepare the apartment is excluded from the inventory dates. 
+
+Each row in the Inventory represents a single apartment. 
+	-> future enhancements could allow the same apartment to have multiple ranges that are possible. 
+
+Bookings Has the following format:
+	apt_id: Integer
+	check_in: Date
+	check_out: Date
+
+Check_in dates can overlap other bookings check_out dates,
+and the Inquiries allow for these overlaps as well when determining availability. 
+
+Further improvements would make apt_id a foreign key to Inventories. This could be done with an association in Rails. Since the data was simple enough to manipulate without it, it has been ommitted. 
+
+No validation currently exists on Bookings and Inventories for the sake of this project I am assuming both are well formatted. Such validations would be easy to implement and would be useful when expanding the project to allow easy creation. 
+
+Inquiries has the following format:
+	aptid: Integer
+	checkin: Date
+	checkout: Date
+	availability: Boolean
+
+These are all validated before being saved to the database.
+	aptid, checkin, and checkout must all be present
+	aptid must be an integer.
+	aptid must have an inventory item with the same ID exist. 
+	checkin must come before checkout.
+
+The form is an HTML5 form to enforce that checkin and checkout are both dates, and that aptid is an integer.
+
+If all validations pass, a new Inquiry row is added with the right data filled in. Availability is automatically populated with true or false. True means there is an available slot. 
+
+Malformed Inquiries or inquiries about non-existant apartments are not recorded and an error message is shown to the user. 
+
+Availability is determined in the Inventory model. It has a method called  "available?(inquiry)", it takes an inquiry object as a paramter and returns true if it is available. 
+
+To determine this it first checks if the apartment is being sublet for the time period. It will then check through each booking of the unit to see if there is any overlap of dates. If any overlap is found, then it immediately returns false. If no conflict exists, true is returned. 
+
+The test cases are primarily to check that this logic works as designed. The cases checked can be found in test/models/inventory_test.rb 
+
+In the future test cases should have more descriptive messages on failure. 
+
+To run the tests simply use "rake test". The corresponding data can be found in inventories.yml and bookings.yml
+
+<tt>rake doc:app</tt>.

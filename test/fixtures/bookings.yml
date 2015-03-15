@@ -1,0 +1,16 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  apt_id: 1
+  check_in: 2015-04-13
+  check_out: 2015-04-16
+
+two:
+  apt_id: 1
+  check_in: 2015-04-20
+  check_out: 2015-04-25
+
+three:
+  apt_id: 2
+  check_in: 2015-02-20
+  check_out: 2015-02-24

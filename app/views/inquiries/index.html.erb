@@ -1,0 +1,58 @@
+<style>
+	.fl {
+		width: 200px;
+		float: left;
+	}
+</style>
+<h1> Find an appartment!</h1>
+
+<%= form_for @inquiry do |f| %>
+	<% if @inquiry.errors.any? %>
+		<h3> Errors: </h3>
+		<ul>
+			<% @inquiry.errors.messages.each do |message| %>
+				<li>
+					<%= message %>
+				</li>
+			<% end %>
+		</ul>
+	<% end %>
+	<p>
+		<%= f.label "Apartment ID" %>
+		<%= f.number_field :aptid %>
+	</p>
+	<p>
+		<%= f.label "Check-in Date" %>
+		<%= f.date_field :checkin %>
+	</p>
+	<p>
+		<%= f.label "Check-out Date" %>
+		<%= f.date_field :checkout %>
+	</p>
+	<p>
+		<%= f.submit "Check Availability" %>
+	</p>
+<% end %>
+
+<h2> Inquiries</h2>
+	<div class='fl'>
+		Apartment ID
+	</div>
+	<div class='fl'>
+		Check-in Date
+	</div>
+	<div class='fl'>
+		Check-out Date
+	</div>
+	<div class='fl'>
+		Apartment Available
+	</div>
+	<br>
+<% @inquiries.reverse.each do |inquiry| %>
+<!-- Return most recent first --> 
+	<div class='fl'> <%= inquiry.aptid %> </div>
+	<div class='fl'> <%= inquiry.checkin %> </div>
+	<div class='fl'> <%= inquiry.checkout %> </div>
+	<div class='fl'> <%= inquiry.availability %> </div>
+	<br>
+<% end %>
